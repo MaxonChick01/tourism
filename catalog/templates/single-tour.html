@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+	<main class="single-tour-page">
+			<section class="single-tour">
+				<div class="single-tour__header tour-header">
+					<div class="single-tour__image ibg">
+						<img src="media/{{ tour.image }}" alt="">
+					</div>
+					<div class="tour-header__content">
+						<span class="tour-header__type">
+							{{ tour.type_of_tour }}
+						</span>
+						<h1 class="tour-header__title">
+							{{ tour.name }}
+						</h1>
+						<a href="{% url 'tours' %}" class="tour-header__button button button_arrow">
+							К другим экскурсиям
+						</a>
+					</div>
+				</div>
+			</section>
+			<section class="tour-desc">
+				<div class="container">
+					<div class="tour-desc__body">
+						<h3 class="tour-desc__title page-title">
+							Описание экскурсии
+						</h3>
+						<div class="tour-desc__content">
+							<p class="tour-desc__desc desc">
+								{{ tour.description }}
+							</p>
+							<div class="tour-desc__cols">
+
+								<div class="tour-desc__item-wrapper with-circle__wrapp">
+									<div class="tour-desc__circle with-circle__circle"></div>
+									<div class="tour-desc__item with-circle__item">
+										<span class="tour-desc__item-val tour-desc__item-val_cost with-circle__val">{{ tour.price }} ₽</span>
+									</div>
+								</div>
+
+								<div class="tour-desc__item-wrapper with-circle__wrapp">
+									<div class="tour-desc__circle with-circle__circle"></div>
+									<div class="tour-desc__item with-circle__item">
+										<span class="tour-desc__item-val tour-desc__item-val_time with-circle__val">{{ tour.time }}</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="route">
+				<div class="container">
+					<div class="route__body">
+						<div class="route__content">
+							<h2 class="route__title page-title">
+								Описание маршрута
+							</h2>
+							<ul class="route__plan">
+								{% for d in tour.description2 %}
+								<li>
+									<p>{{ d }}</p>
+								</li>
+								{% endfor %}
+								{% if tour.additional_plces != "" %}
+								<li>
+									<span>Далее на выбор:</span>
+								</li>
+								{% for d in tour.additional_plces %}
+								<li>
+									<p>{{ d }}</p>
+								</li>
+								{% endfor %}
+								{% endif %}
+							</ul>
+						</div>
+
+						<div class="slider2">
+							<div class="rout__slider swiper">
+								<div class="rout__slider-wrapper swiper-wrapper">
+									{% for pic in tour.gallery.images.all %}
+									<div class="rout__item-wrapper swiper-slide">
+										<div class="rout__item ibg">
+											<img src="media/{{pic.img}}" alt="">
+											<h5 class="rout__item-title">
+												{{ pic.name }}
+											</h5>
+
+										</div>
+									</div>
+									{% endfor %}
+
+								</div>
+							</div>
+
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-button-next"></div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+			<section class="expenses">
+				<div class="container">
+					<div class="expenses__body">
+						<h2 class="expenses__title page-title">
+							Дополнительные расходы (по желанию)
+						</h2>
+
+						<div class="expenses__items">
+							{% for e in tour.additional_expences.all %}
+							<div class="expenses__item-wrapper with-circle__wrapp">
+								<div class="expenses__circle with-circle__circle"></div>
+								<div class="expenses__item with-circle__item">
+									<span class="expenses__item-cost with-circle__val">
+										{{ e.price }} ₽
+									</span>
+									<p class="expenses__item-desc desc">
+										{{ e.name }}
+									</p>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="important">
+				<div class="container">
+					<div class="important__body">
+						<h2 class="important__title page-title">
+							Важная информация
+						</h2>
+						<div class="important__content">
+							<div class="important__info">
+								<h4 class="important__info-title">
+									При пересечении границы при себе иметь:
+								</h4>
+								<div class="important__info-items">
+									<div class="important__info-item info-item">
+										<div class="important__info info-item__img">
+											<img src="{% static 'Img/Single-tour/Info/icon_02.svg' %}" alt="">
+										</div>
+										<div class="important__info info-item__text">
+											<h5 class="important__info info-item__title">
+												Паспорт гражданина РФ
+											</h5>
+											<div class="important__info info-item__desc desc">
+	
+											</div>
+										</div>
+									</div>
+									<div class="important__info-item info-item">
+										<div class="important__info info-item__img">
+											<img src="{% static 'Img/Single-tour/Info/icon_02.svg' %}" alt="">
+										</div>
+										<div class="important__info info-item__text">
+											<h5 class="important__info info-item__title">
+												Гражданам до 14 лет свидетельство о рождении
+											</h5>
+											<div class="important__info info-item__desc desc">
+												Несовершеннолетние дети пересекают границу в сопровождении родителей, в сопровождении законного представителя (нотариально заверенная доверенность с указанием страны вывоза ребенка).
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="booking">
+				<div class="container">
+					<div class="booking__body">
+						<img class="booking__image" src="{% static 'Img/Single-tour/Form/image_01.jpg' %}" alt="">
+						<form action="{% url 'tours' %}" class="booking__form">
+							<h2 class="booking__title title">Забронировать тур</h2>
+							<div class="booking__input-wrapper booking__input-wrapper_date">
+								<input placeholder="Выберите дату" id="airdatepicker_booking" type="text" class="booking__input ">
+							</div>
+							<div class="booking__select-wrapper select-wrapper booking__select-wrapper_count">
+								<select class="booking__select" name="" id="">
+									<option selected value="">Не выбрано</option>
+									<option>1 человек</option>
+									<option>2 человека</option>
+									<option>3 человека</option>
+									<option>4 человека</option>
+									<option>5 человек</option>
+								</select>
+							</div>
+							<button class="booking__button button" type="submit">
+								Забронировать
+							</button>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+{% endblock %}

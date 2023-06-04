@@ -1,0 +1,25 @@
+{% load static %}
+<header>
+	<div class="container">
+		<div class="header__container">
+			<div class="header__body">
+				<div class="header__logo">
+					<a href="{% url 'home' %}"><img src="{% static 'Img/Header/Logo.svg' %}" alt=""></a>
+				</div>
+				<div class="header__menu menu">
+					<nav class="menu__body">
+						<ul class="menu__list">
+							{% if cat == 'home' %}
+							<li><a class="menu__link _active" href="{% url 'home' %}">Главная</a></li>
+							<li><a class="menu__link" href="{% url 'tours' %}">Экскурсии</a></li>
+							{% else %}
+							<li><a class="menu__link" href="{% url 'home' %}">Главная</a></li>
+							<li><a class="menu__link _active" href="{% url 'tours' %}">Экскурсии</a></li>
+							{% endif %}
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+        <main>
+			<section class="home">
+				<div class="home__bg ibg">
+					<img src="{% static 'Img/Home/Main/Image_01.jpg' %}" alt="">
+				</div>
+				<div class="container">
+					<div class="home__body">
+						<div class="home__content">
+							<div class="home__title">
+								<p class="home__title-medium">ПУТЕШЕСТВУЙ</p>
+								<span class="home__title-yellow">вместе с</span>
+								<p class="home__title-bold">PERO TRAVEL</p>
+							</div>
+							<ul class="home__social">
+								<li><a class="home__social-link" href=""><img src="{% static 'Img/Home/Main/Icon_03.svg' %}" alt=""></a></li>
+								<li><a class="home__social-link" href=""><img src="{% static 'Img/Home/Main/Icon_02.svg' %}" alt=""></a></li>
+								<li><a class="home__social-link" href=""><img src="{% static 'Img/Home/Main/Icon_01.svg' %}" alt=""></a></li>
+							</ul>
+						</div>
+						<a href="{% url 'tours' %}" class="home__button button button_arrow">К экскурсиям</a>
+					</div>
+				</div>
+			</section>
+			<section class="popular">
+				<div class="container">
+					<div class="popular__body">
+						<h2 class="popular__title page-title">
+							Популярные экскурсии
+						</h2>
+
+						<div class="slider">
+							<div class="popular__slider swiper">
+								<div class="popular__slider-wrapper swiper-wrapper">
+									{% for t in popular %}
+
+									<div class="popular__item-wrapper swiper-slide">
+										<div class="popular__item ibg tour-card">
+											<img src="media/{{t.image}}" alt="">
+											<p class="tour-card__type">
+												{{t.type_of_tour}}
+											</p>
+											<h3 class="tour-card__title">
+												{{ t.name }}
+											</h3>
+											<div class="tour-card__info">
+												<span class="tour-card__time">
+													{{ t.time }}
+												</span>
+												<span class="tour-card__cost">
+													{{ t.price }} ₽
+												</span>
+											</div>
+											<p class="tour-card__desc">
+												{{ t.description }}
+											</p>
+											<a href="{{t.get_absolute_url}}" class="tour-card__button button">
+												Подробнее
+											</a>
+										</div>
+									</div>
+
+									{% endfor %}
+
+								</div>
+							</div>
+
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-button-next"></div>
+						</div>
+
+					</div>
+				</div>
+			</section>
+			<section class="about">
+				<div class="container">
+					<div class="about__body">
+						<div class="about__image ibg">
+							<img src="{% static 'Img/Home/About/Image_01.jpg' %}" alt="">
+						</div>
+						<div class="about__description">
+							<h2 class="about__title page-title">
+								О нас
+							</h2>
+							<div class="about__desc desc">
+								<p>
+									PeroTravel - Первый онлайн-сервис по бронированию экскурсий без очередей и операторов.
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+								</p>
+								<p>
+									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="types">
+				<div class="container">
+					<div class="types__body">
+						<h2 class="types__title page-title">
+							Виды экскурсий
+						</h2>
+						<div class="types__content">
+							<div class="types__item">
+								<div class="types__item-image">
+									<img src="{% static 'Img/Home/Types/icon_01.svg' %}" alt="">
+								</div>
+								<div class="types__item-info">
+									<h3 class="types__item-title">
+										Автобусный тур
+									</h3>
+									<p class="types__item-desc desc">
+										Один из самых насыщенных впечатлениями, доступных по цене и популярных видов отдыха. Во время одной поездки можно посмотреть достопримечательности сразу нескольких городов, причем обойдется это едва ли не в разы дешевле классического экскурсионного тура с ночевками в отелях.
+									</p>
+								</div>
+							</div>
+							<div class="types__item">
+								<div class="types__item-image">
+									<img src="{% static 'Img/Home/Types/icon_02.svg' %}" alt="">
+								</div>
+								<div class="types__item-info">
+									<h3 class="types__item-title">
+										Джиппинг
+									</h3>
+									<p class="types__item-desc desc">
+										Это путешествие на автомобилях высокой проходимости с преодолением естественных препятствий, это экстремальный вид спорта и отдыха, представляющий собой прохождение туристического маршрута по бездорожью на автомобилях.
+									</p>
+								</div>
+							</div>
+							<div class="types__item">
+								<div class="types__item-image">
+									<img src="{% static 'Img/Home/Types/icon_03.svg' %}" alt="">
+								</div>
+								<div class="types__item-info">
+									<h3 class="types__item-title">
+										Яхтинг
+									</h3>
+									<p class="types__item-desc desc">
+										Это то же, что круиз на лайнере или прогулка на пароме, только на яхте больше свободы, размеры судна в разы меньше, нет назойливой команды, можно самостоятельно почувствовать себя капитаном, постоять за штурвалом. Именно здесь вы почувствуете величайшие просторы Черногор моря.
+									</p>
+								</div>
+							</div>
+							<div class="types__item">
+								<div class="types__item-image">
+									<img src="{% static 'Img/Home/Types/icon_04.svg' %}" alt="">
+								</div>
+								<div class="types__item-info">
+									<h3 class="types__item-title">
+										Каньонинг
+									</h3>
+									<p class="types__item-desc desc">
+										Это экстремально-спортивный вид отдыха, который заключается в преодолении каньонов (обводненных или нет) при помощи альпинистского и иного снаряжения, а иногда и вброд, но без лодок или иных плавсредств.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="types__additionally">
+							<p class="types__info desc">
+								Выбирайте на нашем сайте экскурсию, которая подходит именно вам и записывайтесь онлайн без очередей, просто и быстро!
+							</p>
+							<a href="{% url 'tours' %}" class="types__button button button_arrow">К экскурсиям</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="gallery">
+				<div class="container">
+					<div class="gallery__body">
+
+					</div>
+				</div>
+			</section>
+			<section class="contacts">
+				<div class="container">
+					<div class="contacts__body">
+						<div class="contacts__image ibg">
+							<img src="{% static 'Img/Home/Contacts/Image_01.jpg' %}" alt="">
+						</div>
+						<form action="{% url 'home' %}" class="contacts__form" method="post">
+							{% csrf_token %}
+							<h2 class="contacts__title">
+								Остались вопросы?
+							</h2>
+							<p class="contacts__desc">
+								Оставь заявку и мы ответим
+							</p>
+							<input type="text" name="name" placeholder="Имя" class="contacts__input">
+							<input type="tel" name="tel" placeholder="Телефон" class="contacts__input">
+							<input type="email" name="email" placeholder="Почта" class="contacts__input">
+							<button class="contacts__button button" type="submit">
+								Оставить заявку
+							</button>
+						</form>
+					</div>
+				</div>
+			</section>
+		</main>
+
+
+{% endblock %}

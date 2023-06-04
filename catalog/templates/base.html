@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+{% include 'head.html' %}
+<body>
+	<div class="wrapper">
+		{% include 'header.html' %}
+		{% block main %}{% endblock %}
+        {% include 'footer.html' %}
+	</div>
+<script src="{% static 'Js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'Js/air-datepicker.js' %}"></script>
+<script src="{% static 'Js/main.js' %}"></script></body>
+
+</html>

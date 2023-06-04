@@ -1,0 +1,54 @@
+{% load static %}
+<footer>
+	<div class="container">
+		<div class="footer__container">
+			<div class="footer__body">
+
+				<div class="footer__logo">
+					<img src="{% static 'Img/Footer/Logo.svg' %}" alt="">
+				</div>
+
+				<div class="footer__content">
+					<div class="footer__menu ft-menu">
+						<nav class="ft-menu__body">
+							<ul class="ft-menu__list">
+								<li><a class="ft-menu__link desc" href="{% url 'home' %}">Главная</a></li>
+								<li><a class="ft-menu__link desc" href="{% url 'tours' %}" >Экскурсии</a></li>
+							</ul>
+						</nav>
+					</div>
+
+					<div class="footer__contacts">
+						<ul class="footer__contacts-list">
+							<li>
+								<a class="footer__contacts-link desc what" href="tel:+79649441874">+7 777 777 77 77</a>
+							</li>
+							<li>
+								<a class="footer__contacts-link desc tg" href="tel:+79189199828">+7 777 777 77 77</a>
+							</li>
+							<li>
+								<a class="footer__contacts-link desc tg" href="">Телеграм-бот PeroTravel</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="footer__networks">
+						<a href="mailto:office@perotravel.ru" class="footer__email desc">office@perotravel.ru</a>
+						<ul class="footer__social">
+							<li>
+								<a href="" class="footer__social-link"><img src="{% static 'Img/Footer/VK.svg' %}" alt=""></a>
+							</li>
+							<li>
+								<a href="" class="footer__social-link"><img src="{% static 'Img/Footer/INST.svg' %}" alt=""></a>
+							</li>
+							<li>
+								<a href="" class="footer__social-link"><img src="{% static 'Img/Footer/FB.svg' %}" alt=""></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</footer>

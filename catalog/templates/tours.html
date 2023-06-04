@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+	<main class="tours-page">
+			<section class="tours">
+				<div class="tours__header">
+					<div class="tours__image ibg">
+						<img src="{% static 'Img/Tours/Header/Image_01.jpg' %}" alt="">
+					</div>
+					<h1 class="tours__title">
+						НАШИ ЭКСКУРСИИ
+					</h1>
+				</div>
+				<div class="container">
+					<div class="tours__filters-head">
+						<ul class="tours__types">
+							{% for t in types %}
+							<li>
+								{% if type.name == t.name %}
+								<a href="{% url 'tours_specify' t.slug %}" class="tours__types-link _active">
+									{{ t.name }}
+								</a>
+								{% else %}
+								<a href="{% url 'tours_specify' t.slug %}" class="tours__types-link">
+									{{ t.name }}
+								</a>
+								{% endif %}
+							</li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="tours__body">
+						<div class="tours__sidebar sidebar">
+							<h3 class="sidebar__title">
+								Фильтры
+							</h3>
+							<form action="{{type.slug}}" class="sidebar__form" method="post">
+								{% csrf_token %}
+								<div class="sidebar__item">
+									<h4 class="sidebar__item-title">
+										Стоимость
+									</h4>
+									<div class="sidebar__inputs">
+										{% if input_vals.from %}
+											<input type="number" placeholder="От" class="sidebar__input sidebar__input_cost" name="from" value="{{input_vals.from}}">
+										{% else %}
+											<input type="number" placeholder="От" class="sidebar__input sidebar__input_cost" name="from">
+										{% endif %}
+
+
+										{% if input_vals.to %}
+											<input type="number" placeholder="До" class="sidebar__input sidebar__input_cost" name="to" value="{{input_vals.to}}">
+										{% else %}
+											<input type="number" placeholder="До" class="sidebar__input sidebar__input_cost" name="to">
+										{% endif %}
+
+									</div>
+								</div>
+	
+								<div class="sidebar__item">
+									<h4 class="sidebar__item-title">
+										Место
+									</h4>
+									<div class="select-wrapper">
+										<select name="place" id="" class="sidebar__select sidebar__select_location">
+											<option value="">Не выбрано</option>
+											{% for i in places %}
+											{% if i == input_vals.place %}
+												<option selected value="{{ i }}">{{ i }}</option>
+											{% else %}
+												<option value="{{ i }}">{{ i }}</option>
+											{% endif %}
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+								
+								<div class="sidebar__item">
+									<h4 class="sidebar__item-title">
+										Дата
+									</h4>
+									{% if input_vals.date %}
+										<input id="airdatepicker" placeholder="Не выбрано" type="text" class="sidebar__input sidebar__input_date" name="date" value="{{ input_vals.date }}">
+									{% else %}
+										<input id="airdatepicker" placeholder="Не выбрано" type="text" class="sidebar__input sidebar__input_date" name="date">
+									{% endif %}
+								</div>
+	
+								<div class="sidebar__item">
+									<h4 class="sidebar__item-title">
+										Количество человек
+									</h4>
+									<div class="select-wrapper">
+										<select name="people" id="" class="sidebar__select sidebar__select_count">
+											<option value="">Не выбрано</option>
+											{% for i in people %}
+											{% if i == input_vals.people %}
+												<option selected value="{{ i }}">{{ i }}</option>
+											{% else %}
+												<option value="{{ i }}">{{ i }}</option>
+											{% endif %}
+											{% endfor %}
+										</select>
+									</div>
+								</div>
+	
+								<button class="sidebar__button button" type="submit">
+									Показать
+								</button>
+	
+							</form>
+						</div>
+						<div class="tours__content">
+							<h2 class="tours__content-title">
+								Наши туры
+							</h2>
+							<div class="tours__items">
+
+								{% for tour in tours %}
+
+								<div class="tours__item">
+									<div class="tours__item-image">
+										<img src="../../media/{{ tour.image }}" alt="">
+									</div>
+									<div class="tours__item-content">
+										<p class="tours__item-type">
+											{{ tour.type_of_tour }}
+										</p>
+										<h4 class="tours__item-title">
+											{{ tour.name }}
+										</h4>
+										<div class="tours__item-info">
+											<span class="tours__item-cost">
+												{{ tour.price }} ₽
+											</span>
+											<span class="tours__item-time">
+												{{ tour.time }}
+											</span>
+										</div>
+										<p class="tours__item-desc">
+											{{ tour.description }}
+										</p>
+										<a href="{{ tour.get_absolute_url }}" class="tours__item-link button">
+											Подробнее
+										</a>
+									</div>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+{% endblock %}
